@@ -1,14 +1,15 @@
 package Mastermind;
 
 public class FakeCodeChecker implements CodeChecker {
+    // Check which number is correct and misplaced
     @Override
     public String check(String secretCode, String guess) {
-        int exact = 0, partial = 0;
+        int correct = 0, misplaced = 0;
         for (int i = 0; i < secretCode.length(); i++) {
-            if (secretCode.charAt(i) == guess.charAt(i)) exact++;
-            else if (secretCode.contains(String.valueOf(guess.charAt(i)))) partial++;
+            if (secretCode.charAt(i) == guess.charAt(i)) correct++;
+            else if (secretCode.contains(String.valueOf(guess.charAt(i)))) misplaced++;
         }
-        return exact + " correct, " + partial + " misplaced";
+        return correct + " correct, " + misplaced + " misplaced";
     }
 }
 

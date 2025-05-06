@@ -16,11 +16,14 @@ public class MastermindGame {
     public void play() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter your name: ");
+        // Name will be used to save top score
         String name = scanner.nextLine();
         int attempts = 0;
+        // A guess which all game is about
         String guess;
 
         while (true) {
+            // Guessing part
             System.out.print("Enter guess: ");
             guess = scanner.nextLine();
             if (!guess.matches("\\d{4}")) {
@@ -28,10 +31,12 @@ public class MastermindGame {
                 continue;
             }
 
+            // Adding part
             attempts++;
             String feedback = checker.check(secretCode, guess);
             System.out.println(feedback);
 
+            // Checking part
             if (feedback.startsWith("4 correct")) {
                 System.out.println("You guessed it in " + attempts + " attempts!");
                 try {
@@ -42,6 +47,7 @@ public class MastermindGame {
                 break;
             }
         }
+
 
         System.out.println("Top 3 games:");
         for (GameResult res : repository.getTopGames()) {
